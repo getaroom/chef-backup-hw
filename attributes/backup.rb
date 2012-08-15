@@ -1,5 +1,12 @@
+# Versions, etc.
+default['backup']['rvm_ruby_string']         = "ruby-1.9.3@backup"
+default['backup']['version']                 = "3.0.25"
+default['backup']['gems'] = { 'fog' => '1.4.0',
+                              'httparty' => '0.8.1',
+}
+
 # Base dir for installation (Gemfile, models, keys, etc)
-default['backup']['base_dir'] = "/opt/backups"
+default['backup']['base_dir'] = "/mnt/backups"
 
 # Backup Models
 default['backup']['models'] = %w[daily]
@@ -8,7 +15,7 @@ default['backup']['models'] = %w[daily]
 default['backup']['split_into_chunks_of'] = 250
 
 # Databases
-default['backup']['databases'] = %w[MySQL MongoDB Redis]
+default['backup']['databases'] = []
 
 # AWS
 default['backup']['aws']['access_key_id'] = nil
@@ -50,3 +57,11 @@ default['backup']['redis']['password'] = ""
 default['backup']['redis']['host'] = "localhost"
 default['backup']['redis']['port'] = 6379
 default['backup']['redis']['invoke_save'] = true
+
+# Campfire Notification
+default['backup']['campfire']['on_success'] = false
+default['backup']['campfire']['on_warning'] = false
+default['backup']['campfire']['on_failure'] = true
+default['backup']['campfire']['api_token']  = ""
+default['backup']['campfire']['subdomain']  = ""
+default['backup']['campfire']['room_id']    = ""

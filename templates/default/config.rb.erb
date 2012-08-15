@@ -1,8 +1,8 @@
 Backup::Storage::S3.defaults do |s3|
-  s3.access_key_id = <%= @aws_access_key_id %>
-  s3.secret_access_key = <%= @aws_secret_access_key %>
-  s3.bucket = <%= @s3_bucket %>
-  s3.path = <%= @s3_path %>
+  s3.access_key_id = "<%= @aws_access_key_id %>"
+  s3.secret_access_key = "<%= @aws_secret_access_key %>"
+  s3.bucket = "<%= @s3_bucket %>"
+  s3.path = "<%= @s3_path %>"
   s3.keep = <%= @s3_keep %>
 end
 
@@ -11,35 +11,44 @@ Backup::Encryptor::GPG.defaults do |encryption|
 end
 
 Backup::Database::MySQL.defaults do |db|
-  db.name = <%= @mysql_database %>
-  db.username = <%= @mysql_username %>
-  db.password = <%= @mysql_password %>
+  db.name = "<%= @mysql_database %>"
+  db.username = "<%= @mysql_username %>"
+  db.password = "<%= @mysql_password %>"
   <% if @mysql_socket %>
-  db.socket = <%= @mysql_socket %>
+  db.socket = "<%= @mysql_socket %>"
   <% else %>
-  db.host = <%= @mysql_host %>
+  db.host = "<%= @mysql_host %>"
   db.port = <%= @mysql_port %>
   <% end %>
   db.additional_options = ["--quick", "--single-transaction"]
 end
 
 Backup::Database::MongoDB.defaults  do |db|
-  db.name = <%= @mongodb_database %>
-  db.username = <%= @mongodb_username %>
-  db.password = <%= @mongodb_password %>
-  db.host = <%= @mongodb_host %>
+  db.name = "<%= @mongodb_database %>"
+  db.username = "<%= @mongodb_username %>"
+  db.password = "<%= @mongodb_password %>"
+  db.host = "<%= @mongodb_host %>"
   db.port = <%= @mongodb_port %>
   db.lock = <%= @mongodb_lock %>
   db.ipv6 = <%= @mongodb_ipv6 %>
 end
 
 Backup::Database::Redis.defaults do |db|
-  db.name = <%= @redis_database %>
-  db.path = <%= @redis_path %>
-  db.password = <%= @redis_password %>
-  db.host = <%= @redis_host %>
+  db.name = "<%= @redis_database %>"
+  db.path = "<%= @redis_path %>"
+  db.password = "<%= @redis_password %>"
+  db.host = "<%= @redis_host %>"
   db.port = <%= @redis_port %>
   db.invoke_save = <%= @redis_invoke_save %>
+end
+
+Backup::Notifier::Campfire.defaults do |cf|
+  cf.on_failure = <%= @campfire_on_failure %>
+  cf.on_warning = <%= @campfire_on_warning %>
+  cf.on_success = <%= @campfire_on_success %>
+  cf.api_token  = "<%= @campfire_api_token %>"
+  cf.subdomain  = "<%= @campfire_subdomain %>"
+  cf.room_id    = "<%= @campfire_room_id %>"
 end
 
 Dir[File.join(File.dirname(Config.config_file), "models", "*.rb")].each do |model|
