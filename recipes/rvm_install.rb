@@ -54,6 +54,8 @@ template File.join(base_dir, "config.rb") do
              :s3_bucket => node['backup']['aws']['s3']['bucket'],
              :s3_path => node['backup']['aws']['s3']['path'],
              :s3_keep => node['backup']['aws']['s3']['keep'],
+             # GPG
+             :gpg_public_key => node['backup']['gpg']['public_key'],
              # MySQL
              :mysql_database => node['backup']['mysql']['database'],
              :mysql_username => node['backup']['mysql']['username'],

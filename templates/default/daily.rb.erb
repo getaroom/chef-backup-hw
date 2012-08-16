@@ -3,7 +3,10 @@ Backup::Model.new(:<%= @backup_model %>, 'Backups for <%= @databases %>') do
   <% @databases.each do |db| %>
   database <%= db %>
   <% end %>
-  store_with S3
+  <% if @gpg_public_key %>
+  encrypt_with GPG
+  <% end %>
   compress_with Gzip
+  store_with S3
   notify_by Campfire
 end

@@ -6,9 +6,11 @@ Backup::Storage::S3.defaults do |s3|
   s3.keep = <%= @s3_keep %>
 end
 
+<% if @gpg_public_key %>
 Backup::Encryptor::GPG.defaults do |encryption|
   encryption.key = open(File.join("keys", "backups.public.gpg")).read
 end
+<% end %>
 
 Backup::Database::MySQL.defaults do |db|
   db.name = "<%= @mysql_database %>"
