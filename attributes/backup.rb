@@ -44,7 +44,7 @@ default['backup']['mongodb']['username'] = ""
 default['backup']['mongodb']['password'] = ""
 default['backup']['mongodb']['host'] = "localhost"
 default['backup']['mongodb']['port'] = 27017
-default['backup']['mongodb']['lock'] = true
+default['backup']['mongodb']['lock'] = false
 default['backup']['mongodb']['ipv6'] = false
 # Redis options
 # Redis backups *MUST* be run on the machine running Redis.
