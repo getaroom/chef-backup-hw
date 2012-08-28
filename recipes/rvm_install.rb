@@ -110,7 +110,6 @@ node['backup']['models'].each do |backup_model|
     hour "1"
     minute "1"
     command "/usr/local/rvm/bin/backup_backup perform -t #{backup_model} -r #{base_dir}"
-    path base_dir
   end
 
 end
