@@ -77,6 +77,7 @@ template File.join(base_dir, "config.rb") do
              :redis_host => node['backup']['redis']['host'],
              :redis_port => node['backup']['redis']['port'],
              :redis_invoke_save => node['backup']['redis']['invoke_save'],
+             :redis_cli_utility => node['backup']['redis']['redis_cli_utility'],
              # Campfire
              :campfire_api_token  => node['backup']['campfire']['api_token'],
              :campfire_subdomain  => node['backup']['campfire']['subdomain'],

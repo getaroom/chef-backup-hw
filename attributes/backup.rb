@@ -57,6 +57,7 @@ default['backup']['redis']['password'] = ""
 default['backup']['redis']['host'] = "localhost"
 default['backup']['redis']['port'] = 6379
 default['backup']['redis']['invoke_save'] = true
+default['backup']['redis']['redis_cli_utility'] = "redis-cli"
 
 # Campfire Notification
 default['backup']['campfire']['on_success'] = false

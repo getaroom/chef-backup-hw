@@ -69,6 +69,7 @@ template File.join(base_dir, "config.rb") do
              :redis_host => node['backup']['redis']['host'],
              :redis_port => node['backup']['redis']['port'],
              :redis_invoke_save => node['backup']['redis']['invoke_save'],
+             :redis_cli_utility => node['backup']['redis']['redis_cli_utility'],
              )
 end
 

@@ -42,6 +42,7 @@ Backup::Database::Redis.defaults do |db|
   db.host = "<%= @redis_host %>"
   db.port = <%= @redis_port %>
   db.invoke_save = <%= @redis_invoke_save %>
+  db.redis_cli_utility = "<%= @redis_cli_utility %>"
 end
 
 Backup::Notifier::Campfire.defaults do |cf|
