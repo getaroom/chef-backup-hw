@@ -1,11 +1,21 @@
-Backup::Model.new(:<%= @backup_model %>, 'Backups for <%= @databases %>') do
+Backup::Model.new(:<%= @backup_model %>, 'Backups for <%= (@databases || @archives.to_a.map { |archive| archive['name'] } || "unknown modules") %>') do
   split_into_chunks_of <%= @split_into_chunks_of %>
-  <% @databases.each do |db| %>
+
+ <% @databases.to_a.each do |db| %>
   database <%= db %>
   <% end %>
   <% if @gpg_public_key %>
   encrypt_with GPG
   <% end %>
+
+  <% @archives.to_a.each do |archive| %>
+  archive <%= ":#{archive['name']}" %> do |archive|
+  <% archive['paths'].each do |path| %>
+    archive.add '<%= path %>'
+  <% end %>
+  end
+  <% end %>
+
   compress_with Gzip
   store_with S3
   notify_by Campfire

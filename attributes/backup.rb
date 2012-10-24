@@ -14,8 +14,11 @@ default['backup']['models'] = %w[daily]
 # Chunks (used by all models)
 default['backup']['split_into_chunks_of'] = 250
 
+# Backup Archives (file paths)
+default['backup']['archives'] = nil
+
 # Databases
-default['backup']['databases'] = []
+default['backup']['databases'] = nil
 
 # AWS
 default['backup']['aws']['access_key_id'] = nil

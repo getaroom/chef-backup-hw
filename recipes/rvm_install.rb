@@ -102,6 +102,7 @@ node['backup']['models'].each do |backup_model|
   template File.join(models_dir, "#{backup_model}.rb") do
     variables( :backup_model => backup_model.to_sym,
                :databases => node['backup']['databases'],
+               :archives  => node['backup']['archives'],
                :split_into_chunks_of => node['backup']['split_into_chunks_of']
                )
   end
