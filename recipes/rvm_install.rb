@@ -111,7 +111,7 @@ node['backup']['models'].each do |backup_model|
   cron "scheduled backup: #{backup_model}" do
     hour "1"
     minute "1"
-    command "/usr/local/rvm/bin/backup_backup perform -t #{backup_model} -r #{base_dir}"
+    command "#{node['backup']['cron']['prefix']}/usr/local/rvm/bin/backup_backup perform -t #{backup_model} -r #{base_dir}"
   end
 
 end

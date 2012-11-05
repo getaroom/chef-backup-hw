@@ -90,7 +90,7 @@ node['backup']['models'].each do |backup_model|
   cron "scheduled backup: #{backup_model}" do
     hour "*/1"
     minute "0"
-    command "bundle exec backup perform -t #{backup_model}"
+    command "#{node['backup']['cron']['prefix']}bundle exec backup perform -t #{backup_model}"
     path "/opt/backups/bin"
   end
 

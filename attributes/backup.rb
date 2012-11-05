@@ -5,6 +5,8 @@ default['backup']['gems'] = { 'fog' => '1.4.0',
                               'httparty' => '0.8.1',
 }
 
+default['backup']['cron']['prefix'] = ""
+
 # Base dir for installation (Gemfile, models, keys, etc)
 default['backup']['base_dir'] = "/mnt/backups"
 
