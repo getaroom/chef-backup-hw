@@ -94,6 +94,7 @@ end
 
 rvm_wrapper "backup" do
   binary "backup"
+  prefix node['backup']['rvm_wrapper_prefix']
   ruby_string node['backup']['rvm_ruby_string']
 end
 
@@ -107,11 +108,13 @@ node['backup']['models'].each do |backup_model|
                )
   end
 
+  rvm_command = node['backup']['rvm_wrapper_prefix'] ? "#{node['backup']['rvm_wrapper_prefix']}_backup" : "backup"
+
   # TODO: determine schedule from model
   cron "scheduled backup: #{backup_model}" do
     hour "1"
     minute "1"
-    command "#{node['backup']['cron']['prefix']}/usr/local/rvm/bin/backup_backup perform -t #{backup_model} -r #{base_dir}"
+    command "#{node['backup']['cron']['prefix']}/usr/local/rvm/bin/#{rvm_command} perform -t #{backup_model} -r #{base_dir}"
   end
 
 end

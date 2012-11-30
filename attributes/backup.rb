@@ -1,5 +1,6 @@
 # Versions, etc.
 default['backup']['rvm_ruby_string']         = "ruby-1.9.3@backup"
+default['backup']['rvm_wrapper_prefix']      = "backup"
 default['backup']['version']                 = "3.0.25"
 default['backup']['gems'] = { 'fog' => '1.4.0',
                               'httparty' => '0.8.1',
