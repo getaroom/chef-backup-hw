@@ -13,7 +13,7 @@ end
 <% end %>
 
 Backup::Database::MySQL.defaults do |db|
-  db.name = "<%= @mysql_database %>"
+  db.name = <%= @mysql_database == "all" ? ":all" : @mysql_database.inspect %>
   db.username = "<%= @mysql_username %>"
   db.password = "<%= @mysql_password %>"
   <% if @mysql_socket %>
@@ -26,7 +26,7 @@ Backup::Database::MySQL.defaults do |db|
 end
 
 Backup::Database::MongoDB.defaults  do |db|
-  db.name = "<%= @mongodb_database %>"
+  db.name = <%= @mongodb_database == "all" ? ":all" : @mongodb_database.inspect %>
   db.username = "<%= @mongodb_username %>"
   db.password = "<%= @mongodb_password %>"
   db.host = "<%= @mongodb_host %>"

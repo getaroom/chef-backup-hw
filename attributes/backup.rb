@@ -36,7 +36,7 @@ default['backup']['aws']['s3']['keep'] = 10
 default['backup']['gpg']['public_key'] = nil
 
 # MySQL options
-default['backup']['mysql']['database'] = :all
+default['backup']['mysql']['database'] = "all"
 default['backup']['mysql']['username'] = "root"
 default['backup']['mysql']['password'] = ""
 # If socket is specified, we'll prefer that
@@ -45,7 +45,7 @@ default['backup']['mysql']['host'] = "localhost"
 default['backup']['mysql']['port'] = 3306
 
 # MongoDB options
-default['backup']['mongodb']['database'] = :all
+default['backup']['mongodb']['database'] = "all"
 default['backup']['mongodb']['username'] = ""
 default['backup']['mongodb']['password'] = ""
 default['backup']['mongodb']['host'] = "localhost"
