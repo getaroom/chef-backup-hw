@@ -2,20 +2,24 @@ Backup::Model.new(:<%= @backup_model %>, 'Backups for <%= (@databases || @archiv
   split_into_chunks_of <%= @split_into_chunks_of %>
 
   <% @databases.to_a.each do |db| %>
-  database <%= db %>
-  <% end %>
-  <% if @gpg_public_key %>
-  encrypt_with GPG
-  <% end %>
+  <% Array(@node['backup'][db.downcase]['database']).each do |database_name| %>
+  database <%= db %> do |db|
+    db.name = <%= (database_name == "all" ? :all : database_name).inspect %>
+  end
 
+  <% end %>
+  <% end %>
   <% @archives.to_a.each do |archive| %>
   archive <%= ":#{archive['name']}" %> do |archive|
   <% archive['paths'].each do |path| %>
     archive.add '<%= path %>'
   <% end %>
   end
-  <% end %>
 
+  <% end %>
+  <% if @gpg_public_key %>
+  encrypt_with GPG
+  <% end %>
   compress_with Gzip
   store_with S3
   notify_by Campfire
