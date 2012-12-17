@@ -1,4 +1,4 @@
-Backup::Model.new(:<%= @backup_model %>, 'Backups for <%= (@databases || @archives.to_a.map { |archive| archive['name'] } || "unknown modules") %>') do
+Backup::Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitalize} " unless @node.chef_environment == "_default" %><%= @node['backup']['model_name'] || (@databases || @archives.to_a.map { |archive| archive['name'] } || "unknown modules") %>') do
   split_into_chunks_of <%= @split_into_chunks_of %>
 
   <% @databases.to_a.each do |db| %>
