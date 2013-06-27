@@ -9,6 +9,5 @@ version          "0.0.3"
 suggests "ruby_installer"
 suggests "bag_config"
 suggests "discovery"
-suggests "mysql::percona_xtrabackup"
+suggests "mysql"
 depends  "rvm"
-
