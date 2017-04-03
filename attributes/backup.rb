@@ -1,7 +1,7 @@
 # Versions, etc.
 default['backup']['rvm_ruby_string']         = "ruby-1.9.3@backup"
 default['backup']['rvm_wrapper_prefix']      = "backup"
-default['backup']['version']                 = "3.0.25"
+default['backup']['version']                 = "3.11.0"
 default['backup']['gems'] = { 'fog' => '1.4.0',
                               'httparty' => '0.8.1',
 }
@@ -15,7 +15,7 @@ default['backup']['base_dir'] = "/mnt/backups"
 default['backup']['models'] = %w[daily]
 
 # Chunks (used by all models)
-default['backup']['split_into_chunks_of'] = 250
+default['backup']['split_into_chunks_of'] = 5120
 
 # Backup Archives (file paths)
 default['backup']['archives'] = nil
@@ -52,6 +52,7 @@ default['backup']['mongodb']['host'] = "localhost"
 default['backup']['mongodb']['port'] = 27017
 default['backup']['mongodb']['lock'] = false
 default['backup']['mongodb']['ipv6'] = false
+default['backup']['mongodb']['additional_options'] = nil
 # Redis options
 # Redis backups *MUST* be run on the machine running Redis.
 # This could temporarily be a slave machine once it has finished

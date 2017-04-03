@@ -29,12 +29,17 @@ directory models_dir
 directory keys_dir
 directory log_dir
 
+Chef::Log.info "LOOK HERE #{node['backup']['rvm_ruby_string']}"
 rvm_environment node['backup']['rvm_ruby_string']
 
 rvm_gem "backup" do
   package_name "backup"
   ruby_string node['backup']['rvm_ruby_string']
   version node['backup']['version']
+end
+
+package 'pigz' do
+  action :install
 end
 
 node['backup']['gems'].each_pair do |gem_name, gem_version|
