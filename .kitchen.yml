@@ -15,6 +15,7 @@ platforms:
 suites:
   - name: default
     run_list:
+      - role[ruby_21]
       - recipe[backup::rvm_install]
     attributes:
       backup:

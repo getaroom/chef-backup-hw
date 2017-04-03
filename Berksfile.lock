@@ -1,0 +1,25 @@
+DEPENDENCIES
+  backup
+    path: .
+    metadata: true
+  gar_rvm_installer
+    path: ../../chef-repo/site-cookbooks/gar_rvm_installer
+
+GRAPH
+  apt (6.0.1)
+  backup (0.0.3)
+    rvm (>= 0.0.0)
+  chef_gem (0.1.0)
+  gar_rvm_installer (0.1.0)
+    rvm (>= 0.0.0)
+  homebrew (3.0.0)
+  java (1.48.0)
+    apt (>= 0.0.0)
+    homebrew (>= 0.0.0)
+    windows (>= 0.0.0)
+  ohai (5.0.2)
+  rvm (0.9.4)
+    chef_gem (>= 0.0.0)
+    java (>= 0.0.0)
+  windows (3.0.4)
+    ohai (>= 4.0.0)
