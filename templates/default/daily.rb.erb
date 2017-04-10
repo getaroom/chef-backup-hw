@@ -4,7 +4,10 @@ Backup::Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitali
   <% @databases.to_a.each do |db| %>
   <% Array(@node['backup'][db.downcase]['database']).each do |database_name| %>
   database <%= db %> do |db|
+    <% if db == "MongoDB" && database_name == "all" %>
+    <% else %>
     db.name = <%= (database_name == "all" ? :all : database_name).inspect %>
+    <% end %>
   end
 
   <% end %>
@@ -17,9 +20,9 @@ Backup::Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitali
   end
 
   <% end %>
-  <% if @gpg_public_key %>
+
   encrypt_with GPG
-  <% end %>
+
   compress_with Custom do |compression|
     compression.command = "pigz --fast --stdout"
     compression.extension = ".gz"
