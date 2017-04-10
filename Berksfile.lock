@@ -17,7 +17,7 @@ GRAPH
     apt (>= 0.0.0)
     homebrew (>= 0.0.0)
     windows (>= 0.0.0)
-  ohai (5.0.2)
+  ohai (5.0.3)
   rvm (0.9.4)
     chef_gem (>= 0.0.0)
     java (>= 0.0.0)

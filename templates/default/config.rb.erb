@@ -31,6 +31,7 @@ Backup::Database::MongoDB.defaults  do |db|
   db.port = <%= @mongodb_port %>
   db.lock = <%= @mongodb_lock %>
   db.ipv6 = <%= @mongodb_ipv6 %>
+  db.additional_options = ["--quiet", "--oplog"]
 end
 
 Backup::Database::Redis.defaults do |db|

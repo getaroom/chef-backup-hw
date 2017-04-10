@@ -5,7 +5,6 @@ Backup::Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitali
   <% Array(@node['backup'][db.downcase]['database']).each do |database_name| %>
   database <%= db %> do |db|
     db.name = <%= (database_name == "all" ? :all : database_name).inspect %>
-    db.additional_options = node['backup']['mongodb']['additional_options'] if node['backup']['mongodb']['additional_options']
   end
 
   <% end %>
@@ -26,5 +25,4 @@ Backup::Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitali
     compression.extension = ".gz"
   end
   store_with S3
-  notify_by Campfire
 end

@@ -4,6 +4,7 @@ driver:
 
 provisioner:
   name: chef_zero
+  require_chef_omnibus: 12.14.89
 
 verifier:
   name: inspec
@@ -15,6 +16,7 @@ platforms:
 suites:
   - name: default
     run_list:
+      - role[kitchen_base]
       - role[ruby_21]
       - recipe[backup::rvm_install]
     attributes:
