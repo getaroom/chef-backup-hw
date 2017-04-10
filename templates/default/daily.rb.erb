@@ -20,7 +20,9 @@ Backup::Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitali
   <% if @gpg_public_key %>
   encrypt_with GPG
   <% end %>
-  compress_with Gzip
+  compress_with Custom do |compression|
+    compression.command = "pigz --fast --stdout"
+    compression.extension = ".gz"
+  end
   store_with S3
-  notify_by Campfire
 end

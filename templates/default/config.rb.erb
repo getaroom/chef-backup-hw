@@ -31,6 +31,7 @@ Backup::Database::MongoDB.defaults  do |db|
   db.port = <%= @mongodb_port %>
   db.lock = <%= @mongodb_lock %>
   db.ipv6 = <%= @mongodb_ipv6 %>
+  db.additional_options = ["--quiet", "--oplog"]
 end
 
 Backup::Database::Redis.defaults do |db|
@@ -40,15 +41,6 @@ Backup::Database::Redis.defaults do |db|
   db.port = <%= @redis_port %>
   db.invoke_save = <%= @redis_invoke_save %>
   db.redis_cli_utility = "<%= @redis_cli_utility %>"
-end
-
-Backup::Notifier::Campfire.defaults do |cf|
-  cf.on_failure = <%= @campfire_on_failure %>
-  cf.on_warning = <%= @campfire_on_warning %>
-  cf.on_success = <%= @campfire_on_success %>
-  cf.api_token  = "<%= @campfire_api_token %>"
-  cf.subdomain  = "<%= @campfire_subdomain %>"
-  cf.room_id    = "<%= @campfire_room_id %>"
 end
 
 Dir[File.join(File.dirname(Config.config_file), "models", "*.rb")].each do |model|
