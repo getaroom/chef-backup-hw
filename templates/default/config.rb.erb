@@ -8,7 +8,7 @@ end
 
 <% if @gpg_public_key %>
 Backup::Encryptor::GPG.defaults do |encryption|
-  encryption.key = open(File.join("keys", "backups.public.gpg")).read
+  encryption.key = open(File.join(<%= @keys_dir %>, "backups.public.gpg")).read
 end
 <% end %>
 

@@ -90,6 +90,8 @@ template File.join(base_dir, "config.rb") do
              :campfire_on_failure => node['backup']['campfire']['on_failure'],
              :campfire_on_warning => node['backup']['campfire']['on_warning'],
              :campfire_on_success => node['backup']['campfire']['on_success'],
+             # GPG vars
+             :keys_dir => keys_dir,
              )
 end
 

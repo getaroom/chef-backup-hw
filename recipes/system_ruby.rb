@@ -22,7 +22,7 @@
 base_dir = node['backup']['base_dir']
 
 models_dir = File.join(base_path, "models")
-key_dir = File.join(base_dir, "keys")
+keys_dir = File.join(base_dir, "keys")
 
 directory base_dir
 directory models_dir
@@ -70,6 +70,8 @@ template File.join(base_dir, "config.rb") do
              :redis_port => node['backup']['redis']['port'],
              :redis_invoke_save => node['backup']['redis']['invoke_save'],
              :redis_cli_utility => node['backup']['redis']['redis_cli_utility'],
+             # GPG info
+             :keys_dir => keys_dir,
              )
 end
 
