@@ -75,6 +75,7 @@ template File.join(base_dir, "config.rb") do
              :mongodb_port => node['backup']['mongodb']['port'],
              :mongodb_lock => node['backup']['mongodb']['lock'],
              :mongodb_ipv6 => node['backup']['mongodb']['ipv6'],
+             :mongodb_additional_options => node.chef_environment == "staging" ? ["--quiet"] : ["--quiet","--oplog"]
              # Redis
              :redis_database => node['backup']['redis']['database'],
              :redis_path => node['backup']['redis']['path'],
