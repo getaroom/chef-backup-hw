@@ -10,16 +10,15 @@ Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitalize} " un
     db.name = <%= (database_name == "all" ? :all : database_name).inspect %>
     <% end %>
   end
+  <% end %>
+  <% end %>
 
-  <% end %>
-  <% end %>
   <% @archives.to_a.each do |archive| %>
   archive <%= ":#{archive['name']}" %> do |archive|
   <% archive['paths'].each do |path| %>
     archive.add '<%= path %>'
   <% end %>
   end
-
   <% end %>
 
   encrypt_with GPG do |encryption|
@@ -31,4 +30,4 @@ Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitalize} " un
     compression.extension = ".gz"
   end
   store_with S3
-end
+<% end %>
