@@ -1,4 +1,5 @@
 Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitalize} " unless @node.chef_environment == "_default" %><%= @node['backup']['model_name'] || (@databases || @archives.to_a.map { |archive| archive['name'] } || "unknown modules") %>') do
+
   split_into_chunks_of <%= @split_into_chunks_of %>
 
   <% @databases.to_a.each do |db| %>
@@ -19,6 +20,7 @@ Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitalize} " un
     archive.add '<%= path %>'
   <% end %>
   end
+  <% end %>
 
   encrypt_with GPG do |encryption|
     encryption.recipients = "operations@getaroom.com"
@@ -28,5 +30,6 @@ Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitalize} " un
     compression.command = "pigz --fast --stdout"
     compression.extension = ".gz"
   end
+
   store_with S3
 <% end %>
