@@ -19,7 +19,6 @@ Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitalize} " un
     archive.add '<%= path %>'
   <% end %>
   end
-  <% end %>
 
   encrypt_with GPG do |encryption|
     encryption.recipients = "operations@getaroom.com"
