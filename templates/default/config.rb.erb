@@ -2,7 +2,7 @@
 # Backup v5.x Configuration
 # ^^^  MUST NOT BE REMOVED OR `backup check --config-file /path/to/config` will completely stop working
 
-root_path <%= node["backup"]["base_dir"] %>
+root_path '<%= node["backup"]["base_dir"] %>'
 tmp_path '.tmp'
 data_path 'data'
 
