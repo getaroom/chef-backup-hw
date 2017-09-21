@@ -3,15 +3,17 @@ Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitalize} " un
   split_into_chunks_of <%= @split_into_chunks_of %>
 
   <% @databases.to_a.each do |db| %>
-  <% Array(@node['backup'][db.downcase]['database']).each do |database_name| %>
+
+    <% Array(@node['backup'][db.downcase]['database']).each do |database_name| %>
+
   database <%= db %>, database_name do |db|
-    <% if db == "MongoDB" && database_name == "all" %>
-    <% else if db == "Redis" %>
+    <% if (db == "MongoDB" && database_name == "all") || (db == "Redis") %>
     <% else %>
     db.name = <%= (database_name == "all" ? :all : database_name).inspect %>
     <% end %>
   end
-  <% end %>
+
+    <% end %>
   <% end %>
 
   <% @archives.to_a.each do |archive| %>
@@ -20,6 +22,7 @@ Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitalize} " un
     archive.add '<%= path %>'
   <% end %>
   end
+
   <% end %>
 
   encrypt_with GPG do |encryption|
@@ -32,4 +35,4 @@ Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitalize} " un
   end
 
   store_with S3
-<% end %>
+end
