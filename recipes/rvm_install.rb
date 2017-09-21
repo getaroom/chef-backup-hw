@@ -2,7 +2,7 @@
 # Cookbook Name:: backup
 # Recipe:: default
 #
-# Copyright 2012, Morgan Nelson
+# Copyright 2012-2017, Morgan Nelson
 # Copyright 2012, AJ Christensen
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

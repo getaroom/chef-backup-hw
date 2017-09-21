@@ -1,10 +1,11 @@
-Backup::Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitalize} " unless @node.chef_environment == "_default" %><%= @node['backup']['model_name'] || (@databases || @archives.to_a.map { |archive| archive['name'] } || "unknown modules") %>') do
+Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitalize} " unless @node.chef_environment == "_default" %><%= @node['backup']['model_name'] || (@databases || @archives.to_a.map { |archive| archive['name'] } || "unknown modules") %>') do
   split_into_chunks_of <%= @split_into_chunks_of %>
 
   <% @databases.to_a.each do |db| %>
   <% Array(@node['backup'][db.downcase]['database']).each do |database_name| %>
-  database <%= db %> do |db|
+  database <%= db %>, database_name do |db|
     <% if db == "MongoDB" && database_name == "all" %>
+    <% else if db == "Redis" %>
     <% else %>
     db.name = <%= (database_name == "all" ? :all : database_name).inspect %>
     <% end %>
@@ -21,7 +22,9 @@ Backup::Model.new(:<%= @backup_model %>, '<%= "#{@node.chef_environment.capitali
 
   <% end %>
 
-  encrypt_with GPG
+  encrypt_with GPG do |encryption|
+    encryption.recipients = "operations@getaroom.com"
+  end
 
   compress_with Custom do |compression|
     compression.command = "pigz --fast --stdout"

@@ -1,10 +1,8 @@
 # Versions, etc.
 default['backup']['rvm_ruby_string']         = "ruby-2.3.5@backup"
 default['backup']['rvm_wrapper_prefix']      = "backup"
-default['backup']['version']                 = "3.11.0"
-default['backup']['gems'] = { 'fog' => '1.4.0',
-                              'httparty' => '0.8.1',
-}
+default['backup']['version']                 = "5.0.0.beta.2"
+default['backup']['gems'] = {}
 
 default['backup']['cron']['prefix'] = ""
 
