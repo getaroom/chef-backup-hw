@@ -19,6 +19,9 @@
 #
 
 base_dir = node['backup']['base_dir']
+puts  "******LOOK BELOW******"
+puts node['backup']['base_dir']
+puts  "******LOOK ABOVE******"
 
 models_dir = File.join(base_dir, "models")
 keys_dir = File.join(base_dir, "keys")
