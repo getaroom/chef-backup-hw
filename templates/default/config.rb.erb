@@ -46,7 +46,7 @@ Database::MongoDB.defaults  do |db|
   db.port = <%= @mongodb_port %>
   db.lock = <%= @mongodb_lock %>
   db.ipv6 = <%= @mongodb_ipv6 %>
-  db.additional_options = <%= @mongodb_additional_options %>
+  db.additional_options = <%= Array(@mongodb_additional_options) %>
 end
 
 Database::Redis.defaults do |db|
