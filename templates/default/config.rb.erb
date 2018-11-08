@@ -36,7 +36,7 @@ Database::MySQL.defaults do |db|
   db.host = "<%= @mysql_host %>"
   db.port = <%= @mysql_port %>
   <% end %>
-  db.additional_options = ["--quick", "--single-transaction"]
+  db.additional_options = ["--quick", "--single-transaction", "--routines"]
 end
 
 Database::MongoDB.defaults  do |db|
