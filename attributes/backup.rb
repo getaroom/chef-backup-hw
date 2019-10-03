@@ -52,7 +52,8 @@ default['backup']['mongodb']['host'] = "localhost"
 default['backup']['mongodb']['port'] = 27017
 default['backup']['mongodb']['lock'] = false
 default['backup']['mongodb']['ipv6'] = false
-default['backup']['mongodb']['additional_options'] = nil
+default['backup']['mongodb']['oplog'] = true
+default['backup']['mongodb']['additional_options'] = "--quiet"
 # Redis options
 # Redis backups *MUST* be run on the machine running Redis.
 # This could temporarily be a slave machine once it has finished
